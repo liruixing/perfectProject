@@ -22,6 +22,9 @@ public class TestServiceImpl implements TestService{
     RedisService redisService;
     @Override
     public Map<String, Object> test(HttpServletRequest request) {
+
+        System.out.println("====================TestServiceImpl:"+this);
+
         String name=request.getParameter("name");
         List<TestBean> list = testMapper.queryTest(name);
 
@@ -31,5 +34,4 @@ public class TestServiceImpl implements TestService{
 
         return ResultUtils.success(list);
     }
-
 }

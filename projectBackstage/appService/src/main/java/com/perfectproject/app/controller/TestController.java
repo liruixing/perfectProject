@@ -21,6 +21,7 @@ public class TestController {
     @ResponseBody
     public Map<String,Object> test(HttpServletRequest request){
 
+        System.out.println("====================TestController:"+this);
         return testService.test(request);
 
     }

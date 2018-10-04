@@ -16,6 +16,13 @@ public class ResultUtils {
         map.put("message","");
         return map;
     }
+    public static Map<String,Object> error(int errorCode,String errorMsg){
+        Map<String,Object> map=new HashMap<>();
+        map.put("code",errorCode);
+        map.put("message",""+errorMsg);
+        return map;
+    }
+
 
 
 }
