@@ -16,6 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
@@ -41,6 +42,32 @@ flutter:
   # assets:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/icon_nav_order_info.png
+    - assets/images/icon_nav_user_center.png
+    - assets/images/icon_nav_community.png
+    - assets/images/icon_nav_home.png
+    - assets/images/icon_nav_home_on.png
+    - assets/images/icon_nav_community_on.png
+    - assets/images/icon_nav_order_info_on.png
+    - assets/images/icon_nav_user_center_on.png
+
+  fonts:
+  - family: fontello
+    fonts:
+    - asset: assets/fonts/fontello.ttf
+  - family: Dosis
+    fonts:
+    - asset: assets/fonts/Dosis/Dosis-Regular.ttf
+      weight: 400
+    - asset: assets/fonts/Dosis/Dosis-Medium.ttf
+      weight: 500
+    - asset: assets/fonts/Dosis/Dosis-SemiBold.ttf
+      weight: 600
+    - asset: assets/fonts/Dosis/Dosis-Bold.ttf
+      weight: 800
+    - asset: assets/fonts/Dosis/Dosis-ExtraBold.ttf
+      weight: 900
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
