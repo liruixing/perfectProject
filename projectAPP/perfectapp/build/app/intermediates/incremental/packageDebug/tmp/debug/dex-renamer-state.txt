@@ -1,0 +1,4 @@
+#Fri Oct 05 16:42:36 CST 2018
+base.0=/Users/dennis/Desktop/gitProject/perfectProject/projectAPP/perfectapp/build/app/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex
