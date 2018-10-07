@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @RestController
+@RequestMapping(value="/noToken",method = RequestMethod.POST)
 public class LoginController {
 
     @Autowired
@@ -21,7 +22,7 @@ public class LoginController {
      * @param request
      * @return
      */
-    @RequestMapping(value="/sendAuthCode",method = RequestMethod.GET)
+    @RequestMapping(value="/sendAuthCode")
     @ResponseBody
     public Map<String,Object> sendAuthCode(HttpServletRequest request){
         return loginService.sendAuthCode(request);
@@ -32,7 +33,7 @@ public class LoginController {
      * @param request
      * @return
      */
-    @RequestMapping(value="/login",method = RequestMethod.GET)
+    @RequestMapping(value="/login")
     @ResponseBody
     public Map<String,Object> login(HttpServletRequest request){
         return loginService.login(request);

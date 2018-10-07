@@ -7,6 +7,7 @@ import com.perfectproject.app.mapper.LoginMapper;
 import com.perfectproject.app.mapper.SMSMapper;
 import com.perfectproject.app.service.LoginService;
 import com.perfectproject.app.service.RedisService;
+import com.perfectproject.app.utils.ErrorCode;
 import com.perfectproject.app.utils.MD5Util;
 import com.perfectproject.app.utils.ResultUtils;
 import com.perfectproject.app.utils.SMSUtil;
@@ -57,7 +58,7 @@ public class LoginServiceImpl implements LoginService {
         AuthCodeInfo authCodeInfo=smsMapper.queryAuthCode(phone,authCode);
 
         if(authCodeInfo==null){//表示没有，直接返回错误
-            return ResultUtils.error(1,"验证码不存在");
+            return ResultUtils.error(ErrorCode.ERROR_LOGIN_AUTHCODE,"验证码不存在");
         }
         //允许登陆
         UserBean user=loginMapper.queryUserByPhone(phone);
@@ -66,7 +67,7 @@ public class LoginServiceImpl implements LoginService {
         }
 
         if(user==null){//登陆失败,返回错误
-            return ResultUtils.error(2,"登陆失败");
+            return ResultUtils.error(ErrorCode.ERROR_LOGIN,"登陆失败");
         }
 
         //登陆成功，生成token
@@ -86,7 +87,7 @@ public class LoginServiceImpl implements LoginService {
         user.setPhone(phone);
         user.setNick_name("");
         user.setNum_gold(0);
-        user.setNum_Integral(0);
+        user.setNum_integral(0);
         user.setNum_rmb(0);
         loginMapper.insert(user);
         return user;

@@ -14,7 +14,7 @@ import com.perfectproject.app.mapper.SMSMapper;
 public class SMSUtil {
     public static void main(String [] a){
 
-        int rqCode= SMSUtil.sendSmsCode("17621388251","121212");//发送验证码
+        int rqCode= SMSUtil.sendSmsCode("13917313249","121212");//发送验证码
         System.out.println("rqcode:"+rqCode);
 
     }
@@ -64,7 +64,7 @@ public class SMSUtil {
         //必填:短信签名-可在短信控制台中找到
         request.setSignName("模拟比赛");
         //必填:短信模板-可在短信控制台中找到
-        request.setTemplateCode("SMS_125119661");
+        request.setTemplateCode("SMS_147195045");
         //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
         //友情提示:如果JSON中需要带换行符,请参照标准的JSON协议对换行符的要求,比如短信内容中包含\r\n的情况在JSON中需要表示成\\r\\n,否则会导致JSON在服务端解析失败
         request.setTemplateParam("{\"name\":\"Tom\", \"code\":\""+code+"\"}");
@@ -83,9 +83,9 @@ public class SMSUtil {
 //                System.out.println("请求成功");
                 return 0;//发送成功
             }else if(sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("isv.AMOUNT_NOT_ENOUGH")){
-                return 1;
+                return ErrorCode.ERROR_LOGIN_SEND_AUTHCODE_OVER;
             }else if(sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("isv.MOBILE_NUMBER_ILLEGAL")){
-                return 2;
+                return ErrorCode.ERROR_LOGIN_SEND_AUTHCODE_PHONE;
             }
         } catch (ClientException e) {
             e.printStackTrace();

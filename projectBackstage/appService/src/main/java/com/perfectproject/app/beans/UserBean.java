@@ -11,7 +11,7 @@ public class UserBean {
     private int age;
     private long num_gold;
     private long num_rmb;
-    private long num_Integral;
+    private long num_integral;
     private Date regist_time;
     private Date last_login_time;
 
@@ -81,12 +81,12 @@ public class UserBean {
         this.num_rmb = num_rmb;
     }
 
-    public long getNum_Integral() {
-        return num_Integral;
+    public long getNum_integral() {
+        return num_integral;
     }
 
-    public void setNum_Integral(long num_Integral) {
-        this.num_Integral = num_Integral;
+    public void setNum_integral(long num_integral) {
+        this.num_integral = num_integral;
     }
 
     public Date getRegist_time() {

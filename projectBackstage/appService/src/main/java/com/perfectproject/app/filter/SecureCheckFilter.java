@@ -33,40 +33,29 @@ public class SecureCheckFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         String token=httpServletRequest.getParameter("token");
-        String userId=httpServletRequest.getParameter("userId");
         String path=httpServletRequest.getServletPath();
-        if("/login".equals(path)){
-            filterChain.doFilter(httpServletRequest, httpServletResponse);
-        }else if(checkToken(token, userId)){//用户已登录
+        if("/noToken".equals(path)){//表示不需要传token
             filterChain.doFilter(httpServletRequest, httpServletResponse);
         }else{
-            try {
-                Map data = new HashMap<String,String>();
-                data.put("code", 9999);
-                data.put("msg","未登录");
-                //返回错误提示
-                jackson2JsonView.render(data, httpServletRequest, httpServletResponse);
-            }catch (Exception ce){
-                log.error(ce.getMessage());
+            String json=redisService.get("token_"+token);
+            if(json==null) {//token不存在,重新登录
+                try {
+                    Map data = new HashMap<String,String>();
+                    data.put("code", 9999);
+                    data.put("msg","未登录");
+                    //返回错误提示
+                    jackson2JsonView.render(data, httpServletRequest, httpServletResponse);
+                }catch (Exception ce){
+                    log.error(ce.getMessage());
+                }
+                return;
             }
+            //token验证成功
+            filterChain.doFilter(httpServletRequest, httpServletResponse);
         }
     }
 
 
-
-    public boolean checkToken(String token,String userId){
-        String reqtoken=redisService.get("loginTokenUserId"+userId);
-        System.out.println("请求用户:userId:"+userId+"    reqtoken:"+reqtoken);
-        if(reqtoken==null){//token有问题,重新登录
-            return false;
-//            return getErrorMap(ErrorCodeUtil.ERROR_CODE_TOKEN,"您的账户验证出错，需要重新登录!");
-        }
-        if(!reqtoken.equals(token)){//token有问题,重新登录
-            return false;
-//            return getErrorMap(ErrorCodeUtil.ERROR_CODE_TOKEN,"你的账号已再其他地方登录！");
-        }
-        return true;
-    }
 
 
 }
