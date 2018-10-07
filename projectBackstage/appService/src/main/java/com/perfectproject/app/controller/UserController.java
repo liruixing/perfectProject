@@ -1,6 +1,6 @@
 package com.perfectproject.app.controller;
 
-import com.perfectproject.app.service.RequirementService;
+import com.perfectproject.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,27 +12,29 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(method = RequestMethod.POST)
-public class RequirementController {
+public class UserController {
 
     @Autowired
-    RequirementService requirementService;
+    UserService userService;
 
     /**
-     * 发布
+     * 获取眼手机验证码
      */
-    @RequestMapping(value="/release")
+    @RequestMapping(value="/queryUserInfo")
     @ResponseBody
-    public Map<String,Object> release(HttpServletRequest request){
-        return requirementService.release(request);
+    public Map<String,Object> queryUserInfo(HttpServletRequest request){
+        return userService.queryUserInfo(request);
     }
 
     /**
-     * 查询列表
+     * 修改用户信息
      */
-    @RequestMapping(value="/queryRequirementList")
+    @RequestMapping(value="/updateUserInfo")
     @ResponseBody
-    public Map<String,Object> queryRequirementList(HttpServletRequest request){
-        return requirementService.queryRequirementList(request);
+    public Map<String,Object> updateUserInfo(HttpServletRequest request){
+        return userService.updateUserInfo(request);
     }
+
+
 
 }

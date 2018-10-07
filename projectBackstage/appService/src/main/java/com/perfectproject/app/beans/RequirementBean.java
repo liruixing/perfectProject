@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class RequirementBean {
     private long id;
+    private long user_id;
     private int type;
     private int game_type;
     private long unit_price;
@@ -14,6 +15,14 @@ public class RequirementBean {
     private int status;
     private Date create_time;
     private Date update_time;
+
+    public long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(long user_id) {
+        this.user_id = user_id;
+    }
 
     public long getId() {
         return id;

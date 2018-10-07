@@ -6,6 +6,7 @@ public class UserBean {
 
     private long id;
     private String phone;
+    private String photo;
     private String nick_name;
     private int sex;
     private int age;
@@ -16,6 +17,14 @@ public class UserBean {
     private Date last_login_time;
 
     private String token;
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
     public String getToken() {
         return token;

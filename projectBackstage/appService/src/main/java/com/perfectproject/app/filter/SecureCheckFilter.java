@@ -22,6 +22,7 @@ import java.util.Map;
 @Component("secureCheckFilter")
 public class SecureCheckFilter extends OncePerRequestFilter {
     private MappingJackson2JsonView jackson2JsonView;
+    private static final Logger log = LoggerFactory.getLogger(SecureCheckFilter.class);
     @Autowired
     RedisService redisService;
 
@@ -29,7 +30,6 @@ public class SecureCheckFilter extends OncePerRequestFilter {
         super();
         jackson2JsonView = new MappingJackson2JsonView();
     }
-    private static final Logger log = LoggerFactory.getLogger(SecureCheckFilter.class);
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         String token=httpServletRequest.getParameter("token");
@@ -50,6 +50,7 @@ public class SecureCheckFilter extends OncePerRequestFilter {
                 }
                 return;
             }
+
             //token验证成功
             filterChain.doFilter(httpServletRequest, httpServletResponse);
         }
