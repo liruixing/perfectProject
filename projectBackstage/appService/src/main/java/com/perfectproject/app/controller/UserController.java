@@ -36,5 +36,14 @@ public class UserController {
     }
 
 
+    /**
+     * 修改用户头像
+     */
+    @RequestMapping(value="/updateUserInfo")
+    @ResponseBody
+    public Map<String,Object> updateUserPhoto(HttpServletRequest request){
+        return userService.updateUserPhoto(request);
+    }
+
 
 }

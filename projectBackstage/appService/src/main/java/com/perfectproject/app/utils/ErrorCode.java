@@ -10,4 +10,8 @@ public class ErrorCode {
 
     public final static int ERROR_REQUIEMENT_INSERT=5;//发布失败
     public final static int ERROR_REQUIEMENT_INSERT_MORE=6;//发布多了
+
+
+    public final static int ERROR_UPDATE_USER=7;//更新用户信息错误
+
 }

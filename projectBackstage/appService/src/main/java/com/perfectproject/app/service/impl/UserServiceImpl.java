@@ -4,6 +4,7 @@ import com.perfectproject.app.beans.UserBean;
 import com.perfectproject.app.mapper.UserMapper;
 import com.perfectproject.app.service.RedisService;
 import com.perfectproject.app.service.UserService;
+import com.perfectproject.app.utils.ErrorCode;
 import com.perfectproject.app.utils.ResultUtils;
 import com.perfectproject.app.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Map<String, Object> updateUserInfo(HttpServletRequest request) {
-        return null;
+        String nickName=request.getParameter("nickName");
+        String sex=request.getParameter("sex");
+        String age=request.getParameter("age");
+
+
+        UserBean user=UserUtils.queryUserByToken(request,redisService);
+
+
+        int count=userMapper.updateUserInfo(user.getId()+"",nickName,sex,age);
+
+        if(count>0){//更新成功
+            return ResultUtils.success("");
+        }
+        return ResultUtils.error(ErrorCode.ERROR_UPDATE_USER);
     }
 
-
+    @Override
+    public Map<String, Object> updateUserPhoto(HttpServletRequest request) {
+        return null;
+    }
 }

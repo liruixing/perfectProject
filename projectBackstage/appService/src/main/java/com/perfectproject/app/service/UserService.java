@@ -13,4 +13,9 @@ public interface UserService {
      * 更新用户信息
      */
     Map<String,Object> updateUserInfo(HttpServletRequest request);
+
+    /**
+     * 更新用户头像
+     */
+    Map<String,Object> updateUserPhoto(HttpServletRequest request);
 }
